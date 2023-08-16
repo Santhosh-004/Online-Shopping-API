@@ -1,6 +1,5 @@
 var axios = require('axios');
 var cheerio = require('cheerio');
-var fs = require('fs');
 var express = require('express');
 var cors = require('cors');
 
