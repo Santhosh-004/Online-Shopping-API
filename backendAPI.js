@@ -5,7 +5,7 @@ var express = require('express');
 var cors = require('cors');
 
 let url;
-let cprod, cprice, cpic, url1, url2, url3, url4, url5, encodename;
+let bkprod, cprod, cprice, cpic, url1, url2, url3, url4, url5, encodename;
 let flipkart = 1, amazon = 1, croma = 1, reliance = 1, work = 1;
 
 let prodn1=[], prodn2=[], prodn3=[], prodn4=[], price1=[], price2=[], price3=[], price4=[];
@@ -48,17 +48,27 @@ async function start(url9) {
         //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
 
 
+        //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div:nth-child(1) > h1 > span
+
         cprod = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div:nth-child(1) > h1 > span').text();
         if (cprod.length == 0) {
             cprod = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span').text();
+            if (cprod.length == 0) {
+                cprod = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div:nth-child(1) > h1 > span').text();
+            }
+        
         }
         cprice = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d').text();
 
+        //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
+
         if (cprice.length == 0) {
-            console.log('No price');
             cprice = $('#corePriceDisplay_desktop_feature_div > div.a-section.a-spacing-none.aok-align-center > span.a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay > span:nth-child(2) > span.a-price-whole').text();
             if (cprice.length == 0) {
                 cprice = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d').text();
+                if (cprice.length == 0) {
+                    cprice = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d').text();
+                }
             }
         }
         cpic = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-5-12._78xt5Y > div:nth-child(1) > div > div._3li7GG > div._1BweB8 > div._3kidJX > div.CXW8mj._3nMexc > img').attr('src');
@@ -114,6 +124,7 @@ async function start(url9) {
 async function start2(url9) {
     await start(url9);
     console.log('\n');
+    bkprod = cprod;
     if (work){//console.log('Before slice ', cprod);
     cprod = cprod.split(' ');
     cprod = cprod[0]+' '+cprod[1]+' '+cprod[2]+' '+cprod[3]+' '+cprod[4]+' '+cprod[5];
@@ -274,7 +285,8 @@ async function start4(url9) {
         }
 
         if (($(element).text().split('  ').at(-2)).includes('₹')) {
-            price2.push(parseInt($(element).text().split('  ').at(-2).split('₹')[1].replace(',', '')));
+            //console.log($(element).text().split('  ').at(-2).split('₹')[1].replaceAll(',', ''));
+            price2.push(parseInt($(element).text().split('  ').at(-2).split('₹')[1].replaceAll(',', '')));
             //console.log($(element).text().split('  ').at(-2).split('₹')[1].replace(',', ''));
         } else {
             price2.push(NaN);
@@ -394,7 +406,7 @@ app.get('/data', async (req, res) => {
     let url9 = req.query.site;
     await start6(url9);
     url3 = url5;
-    res.json({cprod,
+    res.json({bkprod,
         cprice,
         cpic,
         prodn1,
