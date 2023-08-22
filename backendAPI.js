@@ -46,8 +46,9 @@ async function start(url9) {
         //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
         //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
 
+        //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span
 
-        //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div:nth-child(1) > h1 > span
+        //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div
 
         cprod = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div:nth-child(1) > h1 > span').text();
         if (cprod.length == 0) {
@@ -75,7 +76,6 @@ async function start(url9) {
         
 
         console.log(cprod)
-        //console.log(cprice);
         cprice = cprice.replaceAll(/[₹,]/g, '');
         cprice = parseInt(cprice);
         console.log(cprice);
@@ -85,18 +85,53 @@ async function start(url9) {
         console.log("Croma link found");
         croma = 0;
         p_id = url.substring(url.lastIndexOf('/') + 1);
-        let response = await axios.get(`https://api.croma.com/sku/v1/details?pinCode=600082&ProductSkus=${p_id}`, {
+
+        //{"correlation_id":"sssaasss","client":"CROMA","catalog":"croma_products","user_id":"4V3QsbiaMwCCUu5F","org_user_id":"","mad_uuid":"4V3QsbiaMwCCUu5F","fields":["no_of_views","product_image_url","product_title","product_price","product_image_text","product_detail_page_url","rating"],"data_params":{"catalog_item_id":"260532"}}
+
+                                        //https://api.croma.com/pricing-services/v1/price?productList=275932
+        
+        let response1 = await axios.get(`https://api.croma.com/pricing-services/v1/price?productList=${p_id}`, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+                'Channel': 'EC'
+            }
+            
+        });
+
+        cprice = parseInt(response1.data.pricelist[0].sellingPriceValue);
+
+        let response2 = await axios.get(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
             }
         });
 
+        //console.log(response2.data);
+
+        cprod = (response2.data).match(/"name": "([^"]+)"/)[1];
+        
+        const pattern = /https:\/\/media\.croma\.com\/image\/upload\/[^\"]+/g;
+        const links = response2.data.match(pattern);
+
+        cpic = links[0];
+
+
+        /* let response;
+
+        if (true) {
+            response = await axios.post(`https://api.tatadigital.com/api/v1.1/msd/data`, {
+                "correlation_id":"sssaasss","client":"CROMA","catalog":"croma_products","user_id":"4V3QsbiaMwCCUu5F","org_user_id":"","mad_uuid":"4V3QsbiaMwCCUu5F","fields":["no_of_views","product_image_url","product_title","product_price","product_image_text","product_detail_page_url","rating"],"data_params":{"catalog_item_id":"260532"}
+            })
+        }
+
+        console.log(response.data); */
+
         //console.log(response.data[0].images[0].altText);
         //#search > div.s-desktop-width-max.s-desktop-content.s-wide-grid-style-t2.s-opposite-dir.s-wide-grid-style.sg-row > div.sg-col-20-of-24.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div:nth-child(9) > div > div > div > div > div > div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right > div
 
-        cprod = response.data[0].images[0].altText;
+        /* cprod = response.data[0].images[0].altText;
         cprice = response.data[0].price.value;
-        cpic = response.data[0].images[0].url;
+        cpic = response.data[0].images[0].url; */
         console.log(cprod);
         console.log(cprice);
         console.log(cpic);
@@ -123,7 +158,6 @@ async function start(url9) {
 async function start2(url9) {
     await start(url9);
     console.log('\n');
-    bkprod = cprod;
     if (work){//console.log('Before slice ', cprod);
     cprod = cprod.split(' ');
     cprod = cprod[0]+' '+cprod[1]+' '+cprod[2]+' '+cprod[3]+' '+cprod[4]+' '+cprod[5];
@@ -261,7 +295,9 @@ async function start4(url9) {
     await start3(url9);
     //console.log("here1");
     if (amazon) {
-        let amazonenc = encodename.replace(/%20/g, '+');
+        let amazonenc = encodename.split('(')[0];
+        amazonenc = amazonenc.replace(/%20/g, '+');
+
     amazonenc = amazonenc.replace(/\(/g, '%28');
     amazonenc = amazonenc.replace(/\)/g, '%29');
     url2 = "https://www.amazon.in/s?k="+amazonenc+"&ref=nb_sb_ss_ts-doa-p_2_7";
@@ -274,39 +310,35 @@ async function start4(url9) {
       });
     //console.log(response.data);
     let $ = cheerio.load(response.data);
-    let sponsor = 0
+    //console.log($('div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right').text());
 
     $('div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right').each((index, element) => {
         //console.log($(element).text().split('  '), '\n');
-        
-        if ($(element).text().includes('SponsoredSponsored')) {
-            sponsor = 1;
-        }
+        //console.log($(element).text().split('  ')[0].includes('SponsoredSponsored'), '\n');
 
-        if (($(element).text().split('  ').at(-2)).includes('₹')) {
-            //console.log($(element).text().split('  ').at(-2).split('₹')[1].replaceAll(',', ''));
-            price2.push(parseInt($(element).text().split('  ').at(-2).split('₹')[1].replaceAll(',', '')));
-            //console.log($(element).text().split('  ').at(-2).split('₹')[1].replace(',', ''));
-        } else {
-            price2.push(NaN);
-        }
+        if ($(element).text().split('  ')[0].includes('SponsoredSponsored') === false) {
+            prodn2.push($(element).text().split('  ')[0]);
+            if (($(element).text().split('  ').at(-2)).includes('coupon') === true) {
+                //console.log('coupon', $(element).text().split('  ').at(-3));
+                price2.push(parseInt($(element).text().split('  ').at(-3).split('₹')[1].replaceAll(',', '')));
+                //console.log($(element).text().split('  ').at(-2).split('₹')[1].replace(',', ''));
+            
+            } else if (($(element).text().split('  ').at(-2)).includes('₹') === false) {
+                //console.log('no price');
+                price2.push(NaN);
+            
+            } else if (($(element).text().split('  ').at(-2)).includes('coupon') === false) {
+                //console.log('no coupon', $(element).text().split('  ').at(-2));
+                price2.push(parseInt($(element).text().split('  ').at(-2).split('₹')[1].replaceAll(',', '')));
+                //console.log($(element).text().split('  ').at(-2).split('₹')[1].replace(',', ''));
+            
+            }
+        } 
 
     })
 
-    let titles = [];
-    $('h2').each((index, element) => {
-        if (index < 7) {
-            prodn2.push($(element).text());
-        }
-      });
-
-    if (sponsor) {
-        prodn2 = prodn2.slice(2, 7);
-        price2 = price2.slice(2, 7);
-    } else {
-        prodn2 = prodn2.slice(0, 5);
-        price2 = price2.slice(0, 5);
-    }
+    prodn2 = prodn2.slice(0, 5);
+    price2 = price2.slice(0, 5);
 
     console.log("Amazon Price");
     console.log(prodn2);
@@ -320,11 +352,11 @@ async function start5(url9) {
     if (croma) {
         //console.log('here2');
         let cromaenc = encodename;
-    url5 = "https://www.croma.com/searchB?q="+cromaenc+"%3Arelevance&text="+encodename;
-    url3 = "https://api.croma.com/searchservices/v1/search?currentPage=0&query="+cromaenc+"%3Arelevance&fields=FULL&channel=WEB&channelCode=600082&spellOpt=DEFAULT"
+    //let url3 = "https://www.croma.com/searchB?q="+cromaenc+"%3Arelevance&text="+encodename;
+    let url3 = "https://api.croma.com/searchservices/v1/search?currentPage=0&query="+cromaenc+"%3Arelevance&fields=FULL&channel=WEB&channelCode=600082&spellOpt=DEFAULT"
     //https://api.croma.com/searchservices/v1/search?currentPage=0&query=Sansui%20Prime%20Series%20140cm%20(55%20%3Arelevance&fields=FULL&channel=WEB&channelCode=600082&spellOpt=DEFAULT
 
-    //console.log(url3);
+    
 
     try {
     let response = await axios.get(url3, {
@@ -334,10 +366,6 @@ async function start5(url9) {
     });
 
     let result = (response.data.products);
-
-    //result = await Promise.race([response, timeout]);
-    
-    //console.log(result);
 
     const products = result.map((result) => {
         prodn3.push(result.name);
@@ -369,6 +397,9 @@ async function start6(url9) {
     relianceenc = relianceenc.replace(/\(/g, '%28');
     relianceenc = relianceenc.replace(/\)/g, '%29');
     url4 = "https://www.reliancedigital.in/search?q="+relianceenc+"r:relevance";
+    //url4 = "https://www.reliancedigital.in/search?q=fans:relevance";
+
+    //console.log(url4);
 
     let response = await axios.get(url4, {
         headers: {
@@ -377,6 +408,7 @@ async function start6(url9) {
     });
 
     let $ = cheerio.load(response.data);
+    //console.log(response.data);
 
     let pattern = /"currencyIso":"INR","value":(\d+),/g;
     let match;
