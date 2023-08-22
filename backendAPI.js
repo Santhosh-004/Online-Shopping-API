@@ -158,6 +158,7 @@ async function start(url9) {
 async function start2(url9) {
     await start(url9);
     console.log('\n');
+    bkprod = cprod;
     if (work){//console.log('Before slice ', cprod);
     cprod = cprod.split(' ');
     cprod = cprod[0]+' '+cprod[1]+' '+cprod[2]+' '+cprod[3]+' '+cprod[4]+' '+cprod[5];
