@@ -14,3 +14,16 @@ This backend uses:
 - Cors
 
 We gather the data from each of these websites through **Web Scraping** which can later be used for various purposes
+
+## Instructions:
+
+1. First install Node.js from [official website](https://nodejs.org/en)
+2. Clone this repo `$ git clone https://github.com/Santhosh-004/Online-Shopping-API.git`
+3. Open a terminal in the repo directory and enter `$ node backendAPI.js`
+4. The server will run in the localhost at port 5000.
+
+## Usage:
+
+- `/data?site=XXX` => Gives the comparison of similar products from the other 3 stores
+
+XXX - Full link of the store
