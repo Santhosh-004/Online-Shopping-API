@@ -14,6 +14,8 @@ async function start(url9) {
     if (url.includes("amazon.in")) {
         console.log("Amazon Link found");
         amazon = 0;
+        prodn2=null;
+        price2=null;
         let response = await axios.get(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
@@ -34,6 +36,8 @@ async function start(url9) {
     } else if (url.includes("flipkart.com")) {
         console.log("Flipkart link found");
         flipkart = 0;
+        prodn1=null;
+        price1=null;
         let response = await axios.get(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
@@ -84,6 +88,8 @@ async function start(url9) {
     } else if (url.includes("croma.com")) {
         console.log("Croma link found");
         croma = 0;
+        prodn3=null;
+        price3=null;
         p_id = url.substring(url.lastIndexOf('/') + 1);
 
         //{"correlation_id":"sssaasss","client":"CROMA","catalog":"croma_products","user_id":"4V3QsbiaMwCCUu5F","org_user_id":"","mad_uuid":"4V3QsbiaMwCCUu5F","fields":["no_of_views","product_image_url","product_title","product_price","product_image_text","product_detail_page_url","rating"],"data_params":{"catalog_item_id":"260532"}}
@@ -139,6 +145,8 @@ async function start(url9) {
     } else if (url.includes('reliancedigital')) {
         console.log("Reliance link found");
         reliance = 0;
+        prodn4=null;
+        price4=null;
         let response = await axios.get(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
@@ -456,7 +464,8 @@ app.get('/data', async (req, res) => {
     prodn1 = [], price1 = [], prodn2 = [], price2 = [], prodn3 = [], price3 = [], prodn4 = [], price4 = [], amazon=1, flipkart=1, croma=1, reliance=1;
 });
 
-let port = 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/data?site=`);
+  console.log(`Server is running on port ${port}/data?site=`);
 });
+
