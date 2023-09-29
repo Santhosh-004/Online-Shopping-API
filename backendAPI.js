@@ -464,8 +464,9 @@ app.get('/data', async (req, res) => {
     prodn1 = [], price1 = [], prodn2 = [], price2 = [], prodn3 = [], price3 = [], prodn4 = [], price4 = [], amazon=1, flipkart=1, croma=1, reliance=1;
 });
 
+const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log(`Server is running on port ${port}/data?site=`);
 });
 
