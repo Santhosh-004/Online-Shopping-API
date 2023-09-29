@@ -483,12 +483,13 @@ async function start6(url9) {
    if (reliance) {
       //console.log('here3')
       let relianceenc = encodename;
-      relianceenc = relianceenc.replace(/\(/g, "%28");
-      relianceenc = relianceenc.replace(/\)/g, "%29");
+      /* relianceenc = relianceenc.replace(/\(/g, "%28");
+      relianceenc = relianceenc.replace(/\)/g, "%29"); */
+      relianceenc = relianceenc.replaceAll(" ", "%20");
       url4 =
-         "https://www.reliancedigital.in/search?q=" +
-         relianceenc +
-         "r:relevance";
+         `https://www.reliancedigital.in/rildigitalws/v2/rrldigital/cms/pagedata?pageType=productSearchPage&q=${relianceenc}%3Arelevance&page=0&size=24&pc=`;
+
+      //"https://www.reliancedigital.in/search?q=" + relianceenc + "r:relevance";
       //url4 = "https://www.reliancedigital.in/search?q=fans:relevance";
 
       //console.log(url4);
@@ -501,9 +502,17 @@ async function start6(url9) {
       });
 
       let $ = cheerio.load(response.data);
-      //console.log(response.data);
+      //console.log(response.data.data.productListData.results[0]);
+      response.data.data.productListData.results.forEach((element, index) => {
+        if (index < 5) {
+            prodn4.push(element.name);
+            price4.push(element.price.value);
+        }
+        //console.log(index, element.name, element.price.value);
+        //console.log(element);
+      });
 
-      let pattern = /"currencyIso":"INR","value":(\d+),/g;
+      /* let pattern = /"currencyIso":"INR","value":(\d+),/g;
       let match;
       while ((match = pattern.exec(response.data)) !== null) {
          const price = parseInt(match[1]);
@@ -517,7 +526,7 @@ async function start6(url9) {
             prodn4.push($(element).text());
          }
       });
-      prodn4 = prodn4.slice(0, price4.length);
+      prodn4 = prodn4.slice(0, price4.length); */
       console.log("Reliance Prices");
       console.log(prodn4);
       console.log(price4);
