@@ -31,6 +31,8 @@ let prodn1 = [],
 	price3 = [],
 	price4 = [];
 
+
+
 async function start(url9) {
 	url = url9;
 	if (url.includes("amazon.in")) {
@@ -81,7 +83,7 @@ async function start(url9) {
 		//console.log("ran here");
 		$(".dyC4hf").each((index, element) => {
 			//console.log($(element).text().split('₹')[1].replace(',', ''));
-			cprice = parseInt($(element).text().split("₹")[1].replace(",", ""));
+			cprice = parseInt($(element).text().split("₹")[1].replaceAll(",", ""));
 		});
 
 		$("img").each((index, element) => {
@@ -91,52 +93,7 @@ async function start(url9) {
 			}
 		});
 
-		//#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div:nth-child(1) > h1 > span
-		//#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
-		//#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
-
-		//#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span
-
-		//#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div
-
-		/*cprod = $(
-         "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div:nth-child(1) > h1 > span"
-      ).text();
-      if (cprod.length == 0) {
-         cprod = $(
-            "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span"
-         ).text();
-         if (cprod.length == 0) {
-            cprod = $(
-               "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div:nth-child(1) > h1 > span"
-            ).text();
-         }
-      }
-      cprice = $(
-         "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d"
-      ).text();
-
-      //#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d
-
-      if (cprice.length == 0) {
-         cprice = $(
-            "#corePriceDisplay_desktop_feature_div > div.a-section.a-spacing-none.aok-align-center > span.a-price.aok-align-center.reinventPricePriceToPayMargin.priceToPay > span:nth-child(2) > span.a-price-whole"
-         ).text();
-         if (cprice.length == 0) {
-            cprice = $(
-               "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d"
-            ).text();
-            if (cprice.length == 0) {
-               cprice = $(
-                  "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(1) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d"
-               ).text();
-            }
-         }
-      }
-      cpic = $(
-         "#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-5-12._78xt5Y > div:nth-child(1) > div > div._3li7GG > div._1BweB8 > div._3kidJX > div.CXW8mj._3nMexc > img"
-      ).attr("src");
-*/
+		
 		console.log(cprod);
 		//cprice = cprice.replaceAll(/[₹,]/g, "");
 		//cprice = parseInt(cprice);
@@ -148,10 +105,6 @@ async function start(url9) {
 		prodn3 = null;
 		price3 = null;
 		p_id = url.substring(url.lastIndexOf("/") + 1);
-
-		//{"correlation_id":"sssaasss","client":"CROMA","catalog":"croma_products","user_id":"4V3QsbiaMwCCUu5F","org_user_id":"","mad_uuid":"4V3QsbiaMwCCUu5F","fields":["no_of_views","product_image_url","product_title","product_price","product_image_text","product_detail_page_url","rating"],"data_params":{"catalog_item_id":"260532"}}
-
-		//https://api.croma.com/pricing-services/v1/price?productList=275932
 
 		let response1 = await axios.get(
 			`https://api.croma.com/pricing-services/v1/price?productList=${p_id}`,
@@ -182,22 +135,6 @@ async function start(url9) {
 
 		cpic = links[0];
 
-		/* let response;
-
-        if (true) {
-            response = await axios.post(`https://api.tatadigital.com/api/v1.1/msd/data`, {
-                "correlation_id":"sssaasss","client":"CROMA","catalog":"croma_products","user_id":"4V3QsbiaMwCCUu5F","org_user_id":"","mad_uuid":"4V3QsbiaMwCCUu5F","fields":["no_of_views","product_image_url","product_title","product_price","product_image_text","product_detail_page_url","rating"],"data_params":{"catalog_item_id":"260532"}
-            })
-        }
-
-        console.log(response.data); */
-
-		//console.log(response.data[0].images[0].altText);
-		//#search > div.s-desktop-width-max.s-desktop-content.s-wide-grid-style-t2.s-opposite-dir.s-wide-grid-style.sg-row > div.sg-col-20-of-24.s-matching-dir.sg-col-16-of-20.sg-col.sg-col-8-of-12.sg-col-12-of-16 > div > span.rush-component.s-latency-cf-section > div.s-main-slot.s-result-list.s-search-results.sg-row > div:nth-child(9) > div > div > div > div > div > div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right > div
-
-		/* cprod = response.data[0].images[0].altText;
-        cprice = response.data[0].price.value;
-        cpic = response.data[0].images[0].url; */
 		console.log(cprod);
 		console.log(cprice);
 		console.log(cpic);
@@ -231,38 +168,21 @@ async function start2(url9) {
 		//console.log('Before slice ', cprod);
 		//cprod = cprod.split(" ");
 		brand = cprod.split(" ")[0].toLocaleLowerCase();
-		// cprod =
-		//    cprod[0] +
-		//    " " +
-		//    cprod[1] +
-		//    " " +
-		//    cprod[2] +
-		//    " " +
-		//    cprod[3] +
-		//    " " +
-		//    cprod[4] +
-		//    " " +
-		//    cprod[5];
+		
 		cprod = cprod.split("|")[0];
+		cprod = cprod.split("&")[0];
 		cprod = cprod.replaceAll("(", "");
 		cprod = cprod.replaceAll(")", "");
 		cprod = cprod.replaceAll("[", "");
 		cprod = cprod.replaceAll("]", "");
+		cprod = cprod.replaceAll(", ", " ");
 		cprod = cprod.replaceAll("  ", " ");
 
 		//console.log("At the start ", cprod.split(" "));
 		//console.log('before', cprod, ' after ', cprod.trim())
+		console.log("after removing stuff", cprod);
 		encodename = encodeURIComponent(cprod);
-		let flipkartenc = encodename.replaceAll(/\(/g, "%28");
-		flipkartenc = flipkartenc.replaceAll(/\)/g, "%29");
-		flipkartenc = flipkartenc.replaceAll(/%5B/g, "%20");
-		flipkartenc = flipkartenc.replaceAll(/%2C/g, "");
-		url1 =
-			"https://www.flipkart.com/search?q=" +
-			flipkartenc +
-			`&otracker=search&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&as=off&p%5B%5D=facets.price_range.from%3D${
-				cprice / 2
-			}&p%5B%5D=facets.price_range.to%3DMax`;
+
 		//https://www.flipkart.com/search?q=apple%20watch%20se%20%282nd%20gen&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off
 		//https://www.flipkart.com/search?q=Apple+MacBook+Air+Laptop+M1+chip&otracker=search&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.price_range.from%3D30000&p%5B%5D=facets.price_range.to%3DMax
 		//console.log(url1);
@@ -274,6 +194,21 @@ async function start2(url9) {
 async function start3(url9) {
 	await start2(url9);
 	if (flipkart) {
+		let flipkartenc = encodeURIComponent(
+			cprod.split(" ").slice(0, 5).join(" ")
+		).replaceAll(/\(/g, "%28");
+		flipkartenc = flipkartenc.replaceAll(/\)/g, "%29");
+		flipkartenc = flipkartenc.replaceAll(/%5B/g, "%20");
+		flipkartenc = flipkartenc.replaceAll(/%2C/g, "");
+		url1 =
+			"https://www.flipkart.com/search?q=" +
+			flipkartenc +
+			`&otracker=search&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&as=off&p%5B%5D=facets.price_range.from%3D${
+				cprice / 2
+			}&p%5B%5D=facets.price_range.to%3DMax`;
+
+		//url1 = "https://www.flipkart.com/search?q=thomson%20tv&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off";
+
 		console.log(url1);
 		let response = await axios.get(url1, {
 			headers: {
@@ -282,6 +217,7 @@ async function start3(url9) {
 			},
 		});
 		let $ = cheerio.load(response.data);
+		let sponsor = [];
 		let sorry = $(
 			"#container > div > div._36fx1h._6t1WkM._3HqJxg > div > div > div._3uTeW4"
 		).text();
@@ -289,107 +225,78 @@ async function start3(url9) {
 		if (sorry) {
 			console.log("Nothing found");
 		} else {
-			let first = $(
-				"#container > div > div._36fx1h._6t1WkM._3HqJxg > div > div:nth-child(2) > div:nth-child(2) > div > div > div > a > div._3pLy-c.row > div.col.col-7-12 > div._4rR01T"
-			).text();
-
-			if (first) {
-				//less
-				console.log("imp");
-
-				//#container > div > div._36fx1h._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div:nth-child(2) > div:nth-child(2) > div > div > div > div > span
-
-				let title = [];
-				$("span").each((index, element) => {
-					title.push($(element).text());
-				});
-
-				$("div._4rR01T").each((index, element) => {
-					if (title.includes("Sponsored")) {
-						if (index > 1 && index < 7) {
-							prodn1.push($(element).text());
-						}
-					} else {
-						prodn1.push($(element).text());
+			if ($("a.s1Q9rs").text().length != 0 || $("a.IRpwTa").text().length != 0) {
+				console.log("stack");
+				$("div._4ddWXP").each((index, element) => {
+					//console.log($(element).text(), '\n');
+					if ($(element).text().includes("Sponsored")) {
+						sponsor.push(index);
 					}
 				});
-				$("div._30jeq3._1_WHN1").each((index, element) => {
-					if (title.includes("Sponsored")) {
-						if (index > 1 && index < 7) {
-							price1.push(
-								parseInt($(element).text().replaceAll(/[₹,]/g, ""))
-							);
-						}
-					} else {
-						price1.push(
-							parseInt($(element).text().replaceAll(/[₹,]/g, ""))
-						);
+
+				console.log(sponsor);
+
+				$("a.s1Q9rs").each((index, element) => {
+					if (!sponsor.includes(index)) {
+						prodn1.push($(element).attr("title"));
 					}
-				});
-				/* console.log(prodn1);
-                console.log(price1); */
-			} else {
-				//more
-				console.log("non-imp");
-
-				//#container > div > div._36fx1h._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(1) > div > div._2I5qvP > span
-				//#container > div > div._36fx1h._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(1) > div > div._2B099V > a.IRpwTa
-				//#container > div > div._36fx1h._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(1) > div > div > a.IRpwTa
-
-				let title = [];
-				$("span").each((index, element) => {
-					//console.log($(element).text());
-					title.push($(element).text());
 				});
 
 				$("a.IRpwTa").each((index, element) => {
-					//console.log('names ', $(element).text());
-					if (title.includes("Sponsored")) {
-						if (index > 1 && index < 7) {
-							prodn1.push($(element).text());
-						}
-					} else {
-						prodn1.push($(element).text());
+					if (!sponsor.includes(index)) {
+						prodn1.push($(element).attr("title"));
 					}
-				});
-				if (prodn1.length == 0) {
-					$("a.s1Q9rs").each((index, element) => {
-						if (title.includes("Sponsored")) {
-							if (index > 1 && index < 7) {
-								prodn1.push($(element).text());
-							}
-						} else {
-							prodn1.push($(element).text());
-						}
-					});
-				}
+				})
+
 				$("div._30jeq3").each((index, element) => {
-					if (title.includes("Ad")) {
-						if (index > 1 && index < 7) {
-							price1.push(
-								parseInt($(element).text().replaceAll(/[₹,]/g, ""))
-							);
-						}
-					} else {
+					if (!sponsor.includes(index)) {
 						price1.push(
-							parseInt($(element).text().replaceAll(/[₹,]/g, ""))
+							parseInt(
+								$(element)
+									.text()
+									.replaceAll("₹", "")
+									.replaceAll(",", "")
+							)
 						);
 					}
 				});
+			} else {
+				console.log("imp");
+				$("div._2kHMtA").each((index, element) => {
+					if ($(element).text().includes("Sponsored")) {
+						sponsor.push(index);
+					}
+				});
 
-				/* console.log(prodn1);
-                console.log(price1); */
+				console.log(sponsor);
 
-				//#container > div > div._36fx1h._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div:nth-child(2) > div:nth-child(2) > div > div:nth-child(3) > div > a.s1Q9rs
+				$("div._4rR01T").each((index, element) => {
+					if (!sponsor.includes(index)) {
+						prodn1.push($(element).text());
+					}
+				});
+
+				$("div._30jeq3").each((index, element) => {
+					if (!sponsor.includes(index)) {
+						price1.push(
+							parseInt(
+								$(element)
+									.text()
+									.replaceAll("₹", "")
+									.replaceAll(",", "")
+							)
+						);
+					}
+				});
 			}
-			prodn1 = prodn1.slice(0, 5);
-			price1 = price1.slice(0, 5);
-
-			console.log("Flipkart Price");
-
-			console.log(prodn1);
-			console.log(price1);
 		}
+		//prodn1 = prodn1.slice(0, 5);
+		//price1 = price1.slice(0, 5);
+
+		console.log("Flipkart Price");
+
+		console.log(prodn1);
+		console.log(price1);
 	}
 }
 
@@ -478,6 +385,7 @@ async function start4(url9) {
 									"coupon"
 								)
 						) {
+							//console.log("coupon", $(element).text().split("  "));
 							prodn2.push($(element).text().split("  ")[0]);
 							price2.push(
 								parseInt(
@@ -487,10 +395,11 @@ async function start4(url9) {
 										[$(element).text().split("  ").length - 4].split(
 											"₹"
 										)[1]
-										.replace(",", "")
+										.replaceAll(",", "")
 								)
 							);
 						} else {
+							//console.log("not coupon", $(element).text().split("  "));
 							prodn2.push($(element).text().split("  ")[0]);
 							price2.push(
 								parseInt(
@@ -500,7 +409,7 @@ async function start4(url9) {
 										[$(element).text().split("  ").length - 3].split(
 											"₹"
 										)[1]
-										.replace(",", "")
+										.replaceAll(",", "")
 								)
 							);
 						}
@@ -512,6 +421,7 @@ async function start4(url9) {
 							.split("  ")
 							[$(element).text().split("  ").length - 2].includes("₹")
 					) {
+						//console.log("above price");
 						prodn2.push($(element).text().split("  ")[0]);
 						price2.push(
 							parseInt(
@@ -521,7 +431,7 @@ async function start4(url9) {
 									[$(element).text().split("  ").length - 2].split(
 										"₹"
 									)[1]
-									.replace(",", "")
+									.replaceAll(",", "")
 							)
 						);
 					}
@@ -529,58 +439,6 @@ async function start4(url9) {
 			});
 		}
 
-		// $(
-		//    "div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right"
-		// ).each((index, element) => {
-		//    //console.log($(element).text().split('  '), '\n');
-		//    //console.log($(element).text().split('  ')[0].includes('SponsoredSponsored'), '\n');
-
-		//    if (
-		//       $(element).text().split("  ")[0].includes("SponsoredSponsored") ===
-		//       false
-		//    ) {
-		//       prodn2.push($(element).text().split("  ")[0]);
-		//       if (
-		//          $(element).text().split("  ").at(-2).includes("coupon") === true
-		//       ) {
-		//          //console.log('coupon', $(element).text().split('  ').at(-3));
-		//          price2.push(
-		//             parseInt(
-		//                $(element)
-		//                   .text()
-		//                   .split("  ")
-		//                   .at(-3)
-		//                   .split("₹")[1]
-		//                   .replaceAll(",", "")
-		//             )
-		//          );
-		//          //console.log($(element).text().split('  ').at(-2).split('₹')[1].replace(',', ''));
-		//       } else if (
-		//          $(element).text().split("  ").at(-2).includes("₹") === false
-		//       ) {
-		//          //console.log('no price');
-		//          price2.push(NaN);
-		//       } else if (
-		//          $(element).text().split("  ").at(-2).includes("coupon") === false
-		//       ) {
-		//          //console.log('no coupon', $(element).text().split('  ').at(-2));
-		//          price2.push(
-		//             parseInt(
-		//                $(element)
-		//                   .text()
-		//                   .split("  ")
-		//                   .at(-2)
-		//                   .split("₹")[1]
-		//                   .replaceAll(",", "")
-		//             )
-		//          );
-		//          //console.log($(element).text().split('  ').at(-2).split('₹')[1].replace(',', ''));
-		//       }
-		//    }
-		// });
-
-		//prodn2 = prodn2.slice(0, 5);
-		//price2 = price2.slice(0, 5);
 		console.log("Amazon Price");
 		console.log(prodn2);
 		console.log(price2);
@@ -598,7 +456,7 @@ async function start5(url9) {
 		cromaenc = cromaenc.replaceAll(")", "");
 		console.log("croma link ", cromaenc);
 		//let url3 = "https://www.croma.com/searchB?q="+cromaenc+"%3Arelevance&text="+encodename;
-		let url3 =
+		url3 =
 			"https://api.croma.com/searchservices/v1/search?currentPage=0&query=" +
 			cromaenc +
 			"%3Arelevance&fields=FULL&channel=WEB&channelCode=600082&spellOpt=DEFAULT";
@@ -623,6 +481,14 @@ async function start5(url9) {
 
 			prodn3 = prodn3.slice(0, 10);
 			price3 = price3.slice(0, 10);
+			console.log("before split ", cromaenc);
+			cromaenc = cromaenc.split("&")[0];
+			console.log("After split ", cromaenc);
+			url3 =
+				"https://www.croma.com/searchB?q=" +
+				cromaenc +
+				"%3Arelevance&text=" +
+				cromaenc;
 
 			console.log("Croma Prices");
 			console.log(prodn3);
@@ -643,7 +509,7 @@ async function start6(url9) {
 		let relianceenc = encodename;
 		//relianceenc = relianceenc.split("(")[0];
 		console.log(relianceenc);
-		relianceenc = relianceenc.split("(")[0];
+		//relianceenc = relianceenc.split("(")[0];
 		/* relianceenc = relianceenc.replace(/\(/g, "%28");
         relianceenc = relianceenc.replace(/\)/g, "%29"); */
 		relianceenc = relianceenc.replaceAll(" ", "%20");
@@ -675,29 +541,13 @@ async function start6(url9) {
 			//console.log(element);
 		});
 
-		/* let pattern = /"currencyIso":"INR","value":(\d+),/g;
-        let match;
-        while ((match = pattern.exec(response.data)) !== null) {
-           const price = parseInt(match[1]);
-           price4.push(price);
-        }
-  
-        price4 = price4.slice(0, 5);
-  
-        $("p").each((index, element) => {
-           if (index > 0 && index < 6) {
-              prodn4.push($(element).text());
-           }
-        });
-        prodn4 = prodn4.slice(0, price4.length); */
 		console.log("Reliance Prices");
+		
 		console.log(prodn4);
 		console.log(price4);
 		url4 = `https://www.reliancedigital.in/search?q=${relianceenc}:relevance:price:[${
 			cprice / 2
 		}%20TO%202001990]&page=0`;
-		//https://www.reliancedigital.in/search?q=samsung%20s23%205g:relevance:price:[40000%20TO%20264990]&page=0
-		//relevance:price:[40000%20TO%20259900]&page=0
 	}
 }
 const app = express();
@@ -706,7 +556,7 @@ app.use(cors());
 app.get("/data", async (req, res) => {
 	let url9 = req.query.site;
 	await start6(url9);
-	url3 = url5;
+	//url3 = url5;
 	res.json({
 		brand,
 		bkprod,
